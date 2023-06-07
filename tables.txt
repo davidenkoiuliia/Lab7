@@ -1,0 +1,23 @@
+CREATE TABLE coordinates(
+    coordinates_id int primary key NOT NULL,
+    coordinate_x bigint NOT NULL,
+    coordinate_y int NOT NULL
+)
+
+CREATE TABLE users(
+    user_name varchar primary key,
+    password varchar NOT NULL,
+    salt varchar NOT NULL
+)
+
+CREATE TABLE vehicles(
+    vehicle_id int primary key,
+    name varchar not null,
+    coordinates_id int REFERENCES coordinates (coordinates_id),
+    creation_time timestamp not null,
+    engine_power int not null,
+    number_of_wheels int not null,
+    vehicle_type varchar not null,
+    fuel_type varchar not null,
+    creator_name varchar REFERENCES users (user_name)
+)
